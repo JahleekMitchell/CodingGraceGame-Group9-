@@ -440,7 +440,51 @@ def green_magic_room(player_info_arg):
         print("The magician waves his hand and you are whisked away...\n")
         return "flee"
 
+def orange_fire_room(player_info_arg):
+  """The Orange Fire Room: a flaming hot trail."""
 
+  print("\nYou have entered the Orange Fire Room.")
+  print("Flames light the walls around you and the heat burns your skin!")
+
+  #--- Update player state ---
+  player_info_arg["location"] = "Orange Fire Room"
+
+  damage = 15
+  player_info_arg["health"] -= damage
+
+  print(f"The flames burn! You have taken {damage} damage.")
+
+  # Check player health
+  if player_info_arg["health"] <= 0:
+      print("You have been defeated by the flames!")
+      return "flee"
+
+  # Only add the item if the player does not already have it.
+  # This prevents duplicates if the player re-enters the room.
+  fire_item = "Fire Amulet"
+  if fire_item not in player_info_arg["inventory"]:
+      player_info_arg["inventory"].append(fire_item)
+      print(f"You found a {fire_item} and added it to your inventory!")
+      print(f"This item reduces fire {damage}")
+
+  #Track room visit
+  player_info_arg["choices"].append("Orange Fire Room")
+
+  #Show player status
+  show_player_info(player_info_arg)
+
+  print("A lava pit blocks your path.")
+  print("Do you jump over it or search for another way?")
+
+  choice = input("Enter '(J)ump' or '(S)earch': ").lower()
+
+  if choice.startswith("j"):
+    print("You jump over the lava and reach the other side safely!")
+    you_won("You conquered the challenge and escaped the flaming hot dungeon!")
+    return player_info_arg
+  else:
+    print("You search for another path but the flames force you to retreat")
+    return "flee"
 # ===========================================================================
 # CONTROL FUNCTIONS
 # ===========================================================================
