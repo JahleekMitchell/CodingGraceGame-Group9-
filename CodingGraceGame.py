@@ -485,6 +485,36 @@ def orange_fire_room(player_info_arg):
   else:
     print("You search for another path but the flames force you to retreat")
     return "flee"
+  
+  def pink_crystal_room(player_info_arg):
+    """The Pink Crystal Room: a glowing crystal chamber with healing energy."""
+    print("\nYou have entered the Pink Crystal Room.")
+
+    player_info_arg["location"] = "Pink Crystal Room"
+
+    healing = 10
+    crystal_item = "Pink Crystal"
+    player_info_arg["health"] += healing
+
+    if crystal_item not in player_info_arg["inventory"]:
+        player_info_arg["inventory"].append(crystal_item)
+        print(f"You found a {crystal_item}!")
+
+    player_info_arg["choices"].append("Pink Crystal Room")
+    show_player_info(player_info_arg)
+
+    print("Glowing pink crystals sparkle all around you.")
+    print("Do you touch the largest crystal or flee?")
+
+    action = input("[touch | flee] > ").strip().lower()
+
+    if action == "touch":
+        print("Warm light flows through your body. You feel stronger.")
+        return player_info_arg
+    elif "flee" in action:
+        return "flee"
+    else:
+        you_died("A sharp crystal shard flies toward you")
 # ===========================================================================
 # CONTROL FUNCTIONS
 # ===========================================================================
