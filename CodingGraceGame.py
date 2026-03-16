@@ -515,6 +515,52 @@ def orange_fire_room(player_info_arg):
         return "flee"
     else:
         you_died("A sharp crystal shard flies toward you")
+
+def <yellow>_<peace>_room(player_info_arg):
+ """<you enter the peace room and escape from the outside troubles>."""
+
+ # 1. ASCII art (optional but encouraged)
+ print_<peace>() # define a companion print_ function below
+
+ print("you have entered the Yellow Peace Room.")
+
+ # 3. Update player state 
+ player_info_arg["location"] = "Yellow Peace Room"
+
+health= 20
+player_info_arg["health"] +=healing
+
+print("you have the yellow stone, you have gain {health} health")
+
+If player_info_arg["health"] <=0
+Print(" You have to continue the trail and look for yellow stones to receive health")
+
+ item = "yellow_stone "
+ if yellow stone not in player_info_arg["inventory"]:
+    player_info_arg["inventory"].append(yellow_stone)
+    print(f"You found a yellow stone you will receive health ")
+
+ player_info_arg["choices"].append("Yellow Room")
+ 
+
+ show_player_info(player_info_arg)
+
+ # 5. Room narrative and interaction
+ print(" A trail of stones leading to a bright yellow light.")
+ Print("sees yellow stones but with traps set")
+
+ action = input("Trap| milestone ").strip().lower()
+      If action="trap":
+         print("give one yellow stone to escape"
+      
+ if <win_condition>: Has to get 10 yellow_stones 
+
+ you_won("You have full health! ")
+
+     elif <death_condition>: has no yellow_Stones for protection 
+     elif "restart" in action:
+     return "start again"
+ Print("you have lost your life, go back")
 # ===========================================================================
 # CONTROL FUNCTIONS
 # ===========================================================================
