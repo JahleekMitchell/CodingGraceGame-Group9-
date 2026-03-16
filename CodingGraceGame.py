@@ -629,13 +629,13 @@ def start_new_adventure(player_info_arg):
 
     while True:
         print_new_dungeon()
-        print("You enter a room, and you see a red door to your left "
-              "and blue and green doors to your right.")
-        door_picked = input("Do you pick the red door, blue door, "
-                            "or green door? > ")
+        print("You enter a room, and you see a red door, orange door and pink door to your left "
+              "and blue, yellow and green doors to your right.")
+        door_picked = input("Do you pick the red door, blue door, pink door "
+                            "Orange door, yellow door or green door? > ")
 
         # We compare only the first few characters so that inputs like
-        # "red door", "blue", or "green one" all work.
+        # "red door", "blue", 'yellow', 'pink', 'orange' and "green one" all work.
         door = door_picked.strip().lower()
 
         if door.startswith("red"):
@@ -644,8 +644,14 @@ def start_new_adventure(player_info_arg):
             room_result = blissful_ignorance_of_illusion_room(player_info_arg)
         elif door.startswith("green"):
             room_result = green_magic_room(player_info_arg)
+        elif door_picked.startswith("orange"):
+            room_result = orange_fire_room(player_info_arg)
+        elif door_picked.startswith("pink"):
+            room_result = pink_crystal_room(player_info_arg)
+        elif door_picked.startswith("yellow"):
+            room_result = yellow_peace_room(player_info_arg)    
         else:
-            print("Sorry, it's either 'red', 'blue', or 'green' as the "
+            print("Sorry, it's either 'red', 'blue','orange', 'pink', 'yellow' or 'green' as the "
                   "answer. You're the weakest link, goodbye!")
             # Continue the loop so the player can try again.
             continue
