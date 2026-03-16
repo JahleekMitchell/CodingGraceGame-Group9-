@@ -443,14 +443,14 @@ def green_magic_room(player_info_arg):
 def orange_fire_room(player_info_arg):
   """The Orange Fire Room: a flaming hot trail."""
 
-  print("\nYou have entered the Orange Fire Room.")
-  print("Flames light the walls around you and the heat burns your skin!")
+    print("\nYou have entered the Orange Fire Room.")
+    print("Flames light the walls around you and the heat burns your skin!")
 
-  #--- Update player state ---
+   #--- Update player state ---
   player_info_arg["location"] = "Orange Fire Room"
 
-  damage = 15
-  player_info_arg["health"] -= damage
+   damage = 15
+   player_info_arg["health"] -= damage
 
   print(f"The flames burn! You have taken {damage} damage.")
 
@@ -514,7 +514,61 @@ def orange_fire_room(player_info_arg):
     elif "flee" in action:
         return "flee"
     else:
+
         you_died("A sharp crystal shard flies toward you")
+
+def yellow_peace_room(player_info_arg):
+"""The Yellow Peace Room: healing and collecting yellow stones."""
+
+     print("\nYou have entered the Yellow Peace Room.")
+     print("A calm yellow light fills the room.")
+  
+   # Update player state
+   player_info_arg["location"] = "Yellow Peace Room"
+
+   healing = 20
+   player_info_arg["health"] += healing
+  print(f"You feel peaceful and gain {healing} health.")
+
+   # Add yellow stone to inventory
+   yellow_stone = "Yellow Stone"
+ if yellow_stone not in player_info_arg["inventory"]:
+    player_info_arg["inventory"].append(yellow_stone)
+    print("You found a Yellow Stone! It can protect you from traps.")
+
+  player_info_arg["choices"].append("Yellow Peace Room")
+
+  # Show player info
+ show_player_info(player_info_arg)
+
+    print("\nA trail of stones leads toward a bright yellow light.")
+    print("But there may be traps along the way.")
+  
+  action = input("Choose 'trap' or 'milestone': ").strip().lower()
+
+  if action == "trap":
+  if yellow_stone in player_info_arg["inventory"]:
+   print("You give one Yellow Stone to escape the trap.")
+   player_info_arg["inventory"].remove(yellow_stone)
+ else:
+    print("You had no Yellow Stones to protect yourself!")
+      you_died("The trap was too powerful")
+
+   elif action == "milestone":
+     print("You safely reach the next milestone and collect more stones.")
+      
+  # Count yellow stones
+   stone_count = player_info_arg["inventory"].count(yellow_stone)
+ 
+  if stone_count >= 10:
+   you_won("You collected 10 Yellow Stones and restored full health!")
+
+ else:
+   print("You hesitated too long and must go back.")
+  return "flee"
+ 
+   return player_info_arg
+
 # ===========================================================================
 # CONTROL FUNCTIONS
 # ===========================================================================
