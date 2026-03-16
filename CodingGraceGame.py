@@ -443,14 +443,14 @@ def green_magic_room(player_info_arg):
 def orange_fire_room(player_info_arg):
   """The Orange Fire Room: a flaming hot trail."""
 
-  print("\nYou have entered the Orange Fire Room.")
-  print("Flames light the walls around you and the heat burns your skin!")
+    print("\nYou have entered the Orange Fire Room.")
+    print("Flames light the walls around you and the heat burns your skin!")
 
-  #--- Update player state ---
+   #--- Update player state ---
   player_info_arg["location"] = "Orange Fire Room"
 
-  damage = 15
-  player_info_arg["health"] -= damage
+   damage = 15
+   player_info_arg["health"] -= damage
 
   print(f"The flames burn! You have taken {damage} damage.")
 
@@ -514,53 +514,61 @@ def orange_fire_room(player_info_arg):
     elif "flee" in action:
         return "flee"
     else:
+
         you_died("A sharp crystal shard flies toward you")
 
-def <yellow>_<peace>_room(player_info_arg):
- """<you enter the peace room and escape from the outside troubles>."""
+def yellow_peace_room(player_info_arg):
+"""The Yellow Peace Room: healing and collecting yellow stones."""
 
- # 1. ASCII art (optional but encouraged)
- print_<peace>() # define a companion print_ function below
+     print("\nYou have entered the Yellow Peace Room.")
+     print("A calm yellow light fills the room.")
+  
+   # Update player state
+   player_info_arg["location"] = "Yellow Peace Room"
 
- print("you have entered the Yellow Peace Room.")
+   healing = 20
+   player_info_arg["health"] += healing
+  print(f"You feel peaceful and gain {healing} health.")
 
- # 3. Update player state 
- player_info_arg["location"] = "Yellow Peace Room"
-
-health= 20
-player_info_arg["health"] +=healing
-
-print("you have the yellow stone, you have gain {health} health")
-
-If player_info_arg["health"] <=0
-Print(" You have to continue the trail and look for yellow stones to receive health")
-
- item = "yellow_stone "
- if yellow stone not in player_info_arg["inventory"]:
+   # Add yellow stone to inventory
+   yellow_stone = "Yellow Stone"
+ if yellow_stone not in player_info_arg["inventory"]:
     player_info_arg["inventory"].append(yellow_stone)
-    print(f"You found a yellow stone you will receive health ")
+    print("You found a Yellow Stone! It can protect you from traps.")
 
- player_info_arg["choices"].append("Yellow Room")
- 
+  player_info_arg["choices"].append("Yellow Peace Room")
 
+  # Show player info
  show_player_info(player_info_arg)
 
- # 5. Room narrative and interaction
- print(" A trail of stones leading to a bright yellow light.")
- Print("sees yellow stones but with traps set")
+    print("\nA trail of stones leads toward a bright yellow light.")
+    print("But there may be traps along the way.")
+  
+  action = input("Choose 'trap' or 'milestone': ").strip().lower()
 
- action = input("Trap| milestone ").strip().lower()
-      If action="trap":
-         print("give one yellow stone to escape"
+  if action == "trap":
+  if yellow_stone in player_info_arg["inventory"]:
+   print("You give one Yellow Stone to escape the trap.")
+   player_info_arg["inventory"].remove(yellow_stone)
+ else:
+    print("You had no Yellow Stones to protect yourself!")
+      you_died("The trap was too powerful")
+
+   elif action == "milestone":
+     print("You safely reach the next milestone and collect more stones.")
       
- if <win_condition>: Has to get 10 yellow_stones 
+  # Count yellow stones
+   stone_count = player_info_arg["inventory"].count(yellow_stone)
+ 
+  if stone_count >= 10:
+   you_won("You collected 10 Yellow Stones and restored full health!")
 
- you_won("You have full health! ")
+ else:
+   print("You hesitated too long and must go back.")
+  return "flee"
+ 
+   return player_info_arg
 
-     elif <death_condition>: has no yellow_Stones for protection 
-     elif "restart" in action:
-     return "start again"
- Print("you have lost your life, go back")
 # ===========================================================================
 # CONTROL FUNCTIONS
 # ===========================================================================
